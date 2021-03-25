@@ -1,17 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://kit.fontawesome.com/98e6e3d354.js" crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="scss/style.scss">
+  <link rel="stylesheet" href="scss/episode.scss">
+  <link href="https://fonts.googleapis.com/css2?family=Gochi+Hand&display=swap" rel="stylesheet">
+  <script src="js/script.js" defer></script>
   <title>Document</title>
 </head>
 
 <body>
-
-  <header>
+  <header class="header">
     <div class="header_fond"></div>
       <div class="container">
         <div class="header_navbar">
@@ -19,7 +20,7 @@
             <h1 class="header_navbar-logo-title">Rick And Morty</h1>
           </div>
     
-          <div class="header_navbar-menu">
+          <div class="header_navbar_menu">
             <a href="index.html"class="header_navbar-menu-link"><i class="fa fa-home"></i> Acceuil</a>
             <a href="episode.html"class="header_navbar-menu-link"><i class="fas fa-tv"></i> Episodes </a>
             <a href=""class="header_navbar-menu-link"><i class="fas fa-user-friends"></i> Characters </a>
@@ -30,5 +31,35 @@
           </div>
         </div>
   </header>
+
+  <main class="main">
+
+    <div class="imgFond"></div>
+
+      <div class="container2">
+
+        <div class="saison1">
+
+            <div class="titreS1">
+              <h2 id="titre1">SAISON 1</h2>
+            </div>
+
+            <ul class="listeEpS1"></ul>
+
+        </div>
+
+        <div class="saison2">
+
+            <div class="titreS2">
+              <h2 id="titre2">SAISON 2</h2>
+            </div>
+
+            <ul class="listeEpS2"></ul>
+
+        </div>
+        
+      </div>
+
+  </main>
 </body>
 </html>
