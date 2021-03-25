@@ -122,8 +122,8 @@ var startTime = new Date().getTime();
 var elapsedTime = 0;
 
 function affichagePersonnages(personnages) {
-  var mainContainer = document.querySelector("body");
-  mainContainer.innerHTML += "<h2>".concat(personnages.name, "</h2>\n    <div class=\"info_personnages_C hide_C\">\n        <img src=\"").concat(personnages.image, "\" alt=\"image de ").concat(personnages.name, "\">\n        <div>\n            <p>").concat(personnages.name, "</p>\n            <p>").concat(personnages.gender, "</p>\n            <p>").concat(personnages.species, "</p>\n            <p>").concat(personnages.type, "</p>\n            <p>").concat(personnages.origin.name, "</p>\n            <p>").concat(personnages.status, "</p>\n            <p>").concat(personnages.location.name, "</p>\n        </div>\n        <div class=\"episodes\">\n            <ul id=\"").concat(personnages.id, "\">");
+  var mainContainer = document.querySelector("body .results_C");
+  mainContainer.innerHTML += "<h2>".concat(personnages.id, " : ").concat(personnages.name, "</h2>\n    <div class=\"info_personnages_C hide_C\">\n        <img src=\"").concat(personnages.image, "\" alt=\"image de ").concat(personnages.name, "\">\n        <div>\n            <p>").concat(personnages.name, "</p>\n            <p>").concat(personnages.gender, "</p>\n            <p>").concat(personnages.species, "</p>\n            <p>").concat(personnages.type, "</p>\n            <p>").concat(personnages.origin.name, "</p>\n            <p>").concat(personnages.status, "</p>\n            <p>").concat(personnages.location.name, "</p>\n        </div>\n        <div class=\"episodes\">\n            <ul id=\"").concat(personnages.id, "\">");
   personnages.episode.forEach(function (element) {
     fetch(element).then(function (responseAPI) {
       return responseAPI.json();
@@ -157,7 +157,7 @@ function showOrHide(elem) {
 fetch("https://rickandmortyapi.com/api/character").then(function (responseAPI) {
   return responseAPI.json(); // Ici je retourne l'objet reponse formater en JSON
 }).then(function (reponseEnJson) {
-  for (var i = 1; i < 10
+  for (var i = 1; i < 21
   /*reponseEnJson.info.count + 1*/
   ; i++) {
     fetch("https://rickandmortyapi.com/api/character/" + i).then(function (responseAPI) {
@@ -165,36 +165,70 @@ fetch("https://rickandmortyapi.com/api/character").then(function (responseAPI) {
     }).then(function (reponseEnJson) {
       affichagePersonnages(reponseEnJson);
       showOrHide("h2");
+      addEvent();
     }).catch(function (error) {
       console.error(error);
     });
   }
-
+}).then(function () {
+  console.log("deuxieme then");
   elapsedTime = new Date().getTime() - startTime;
   console.log("fin personnages.js en " + elapsedTime + "ms");
 }).catch(function (error) {
   console.error(error);
 }); // Fonctions de recherches
 
-function espece() {
-  console.log("espece");
+function addEvent() {
+  var selecteur_filtre = document.getElementById("selecteur_filtre_C"); //console.log(selecteur_filtre.value)
+
+  selecteur_filtre.addEventListener("change", function () {
+    majValueSelecteur(selecteur_filtre.value);
+  });
 }
 
-var selecteur_espece = document.getElementById("selecteur_espece_C"); //selecteur_espece.setAttribute("onchange", function(){espece()})
+function majValueSelecteur(categ) {
+  console.log("majValueSelecteur");
+  console.log(categ);
+  var selecteur_filtre = document.getElementById("selecteur_filtre_C");
+  console.log("selecteur filtre : " + selecteur_filtre);
+  console.log(selecteur_filtre.nextElementSibling);
 
-console.log(selecteur_espece);
-selecteur_espece.addEventListener("click", function (e) {
-  //espece()
-  console.log('tttt');
-});
-document.querySelector("#test").addEventListener("click", function (e) {
-  //espece()
-  console.log('test');
-}); //selecteur_espece.onchange = function(){
-//    var a = selecteur_espece.value
-//    console.log(a)
-//    console.log("tt")
-//}
+  if (categ == '') {
+    selecteur_filtre.parentNode.lastElementChild.innerHTML = "<option value=''>--------------Choisir une valeur--------------</option>";
+    document.getElementById("selecteur_value_C").setAttribute("disabled", false);
+  } else {
+    switch (categ) {
+      case 'species':
+        console.log('type');
+        document.getElementById("selecteur_value_C").removeAttribute("disabled");
+        selecteur_filtre.parentNode.lastElementChild.innerHTML = "\n                <option value=''>--------------Choisir une esp\xE8ce--------------</option>\n                ";
+        break;
+
+      case 'type':
+        console.log('type');
+        document.getElementById("selecteur_value_C").removeAttribute("disabled");
+        selecteur_filtre.parentNode.lastElementChild.innerHTML = "\n                <option value=''>--------------Choisir un type--------------</option>\n                ";
+        break;
+
+      case 'gender':
+        console.log('type');
+        document.getElementById("selecteur_value_C").removeAttribute("disabled");
+        selecteur_filtre.parentNode.lastElementChild.innerHTML = "\n                <option value=''>--------------Choisir un genre--------------</option>\n                <option value='female'>Femelle</option>\n                <option value='male'>M\xE2le</option>\n                <option value='genderless'>Sans genre</option>\n                <option value='unknown'>Inconnu</option>\n                ";
+        break;
+
+      case 'status':
+        console.log('type');
+        document.getElementById("selecteur_value_C").removeAttribute("disabled");
+        selecteur_filtre.parentNode.lastElementChild.innerHTML = "\n                <option value=''>--------------Choisir un status--------------</option>\n                <option value='alive'>Vivant</option>\n                <option value='dead'>Mort</option>\n                <option value='unknown'>Inconnu</option>\n                ";
+        break;
+
+      default:
+        break;
+    }
+  }
+}
+
+function recherche(categ, value) {}
 },{}],"../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -223,7 +257,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61594" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51246" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

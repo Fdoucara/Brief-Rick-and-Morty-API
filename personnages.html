@@ -8,18 +8,26 @@
     <title>Document</title>
 </head>
 <body>
-    <div style="background-color: red; height: 100px;" class="selecteurs show_C">
-        <select id="selecteur_espece_C" name='test'>
-            <option value='option-1'>Option 1</option>
-            <option value='option-2'>Option 2</option>
-            <option value='option-3'>Option 3</option>
+    <div style="background-color: red; height: 100px;" class="selecteurs show_C" id="selecteur">
+        <select id="selecteur_filtre_C" name='test'>
+            <option value=''>--------------Choisir un filtre--------------</option>
+            <option value='species'>Espèce</option>
+            <option value='type'>Type</option>
+            <option value='gender'>Genre</option>
+            <option value='status'>Status</option>
+            <!--<option value='option-3'>Planète d'origine</option>
+            <option value='option-3'>Dernier lieu de positionnement connu</option>
+            <option value='option-3'>Episode d'apparition</option>-->
+        </select>
+
+        <select id="selecteur_value_C" name='test' disabled>
+            <option value=''>--------------Choisir une valeur--------------</option>
         </select>
     </div>
+    <div class="results_C show_C"></div>
+    <div class="page_nav_C show_C">
 
-    <select id="test" name="test_select">
-        <option>1</option>
-        <option>2</option>
-    </select>
-    <script src="js/personnages.js"></script>
+    </div>
+    <script src="js/personnagesPages.js"></script>
 </body>
 </html>

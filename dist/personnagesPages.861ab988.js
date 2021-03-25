@@ -117,74 +117,128 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
-var bundleURL = null;
-
-function getBundleURLCached() {
-  if (!bundleURL) {
-    bundleURL = getBundleURL();
-  }
-
-  return bundleURL;
+})({"js/personnagesPages.js":[function(require,module,exports) {
+function affichagePersonnages(personnages) {
+  console.log("affichagePersonnages()");
+  var mainContainer = document.querySelector("body .results_C");
+  mainContainer.innerHTML += "<h2>".concat(personnages.id, " : ").concat(personnages.name, "</h2>\n    <div class=\"info_personnages_C hide_C\">\n        <img src=\"").concat(personnages.image, "\" alt=\"image de ").concat(personnages.name, "\">\n        <div>\n            <p>").concat(personnages.name, "</p>\n            <p>").concat(personnages.gender, "</p>\n            <p>").concat(personnages.species, "</p>\n            <p>").concat(personnages.type, "</p>\n            <p>").concat(personnages.origin.name, "</p>\n            <p>").concat(personnages.status, "</p>\n            <p>").concat(personnages.location.name, "</p>\n        </div>\n        <div class=\"episodes\">\n            <ul id=\"").concat(personnages.id, "\">");
+  personnages.episode.forEach(function (element) {
+    fetch(element).then(function (responseAPI) {
+      return responseAPI.json();
+    }).then(function (reponseEnJson) {
+      var containerBuild = document.getElementById(personnages.id);
+      containerBuild.innerHTML += "<li>".concat(reponseEnJson.name, "</li>");
+    }).catch(function (error) {
+      console.error(error);
+    });
+  });
+  mainContainer.innerHTML += "</ul>\n        </div>\n    </div>\n    ";
 }
 
-function getBundleURL() {
-  // Attempt to find the URL of the current script and use that as the base URL
-  try {
-    throw new Error();
-  } catch (err) {
-    var matches = ('' + err.stack).match(/(https?|file|ftp|chrome-extension|moz-extension):\/\/[^)\n]+/g);
+function showOrHide(elem) {
+  console.log("showOrHide()");
+  var cliquable = document.querySelectorAll(elem);
+  cliquable.forEach(function (cliquable) {
+    cliquable.addEventListener("click", function () {
+      console.log("clicked");
 
-    if (matches) {
-      return getBaseURL(matches[0]);
-    }
-  }
-
-  return '/';
-}
-
-function getBaseURL(url) {
-  return ('' + url).replace(/^((?:https?|file|ftp|chrome-extension|moz-extension):\/\/.+)\/[^/]+$/, '$1') + '/';
-}
-
-exports.getBundleURL = getBundleURLCached;
-exports.getBaseURL = getBaseURL;
-},{}],"../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/css-loader.js":[function(require,module,exports) {
-var bundle = require('./bundle-url');
-
-function updateLink(link) {
-  var newLink = link.cloneNode();
-
-  newLink.onload = function () {
-    link.remove();
-  };
-
-  newLink.href = link.href.split('?')[0] + '?' + Date.now();
-  link.parentNode.insertBefore(newLink, link.nextSibling);
-}
-
-var cssTimeout = null;
-
-function reloadCSS() {
-  if (cssTimeout) {
-    return;
-  }
-
-  cssTimeout = setTimeout(function () {
-    var links = document.querySelectorAll('link[rel="stylesheet"]');
-
-    for (var i = 0; i < links.length; i++) {
-      if (bundle.getBaseURL(links[i].href) === bundle.getBundleURL()) {
-        updateLink(links[i]);
+      if (this.nextElementSibling.classList.contains("hide_C")) {
+        this.nextElementSibling.classList.remove("hide_C");
+        this.nextElementSibling.classList.add("show_C");
+      } else {
+        this.nextElementSibling.classList.remove("show_C");
+        this.nextElementSibling.classList.add("hide_C");
       }
-    }
-
-    cssTimeout = null;
-  }, 50);
+    });
+  });
 }
 
-module.exports = reloadCSS;
-},{"./bundle-url":"../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/bundle-url.js"}],"../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+function pageActuelle(firstElemList, nbElemPage) {
+  console.log("pageActuelle()");
+  currentPage = (firstElemList - 1) / nbElemPage + 1;
+  console.log("page actuelle : " + currentPage);
+  return currentPage;
+}
+
+function affichageButtonNavPages(prev, x, next, uri) {
+  console.log("affichageButtonNavPages()");
+  var Container = document.querySelector("body .page_nav_C");
+
+  if (prev == null) {
+    Container.innerHTML = "\n        <button disabled>Page pr\xE9c\xE9dante</button>\n        <button disabled>".concat(x - 2, "</button>\n        <button disabled>").concat(x - 1, "</button>\n        <button disabled>").concat(x, "</button>\n        <button>").concat(x + 1, "</button>\n        <button>").concat(x + 2, "</button>\n        <button class=\"nextPage\">Page suivante</button>\n        ");
+    Container = Container.firstElementChild.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling;
+    Container.addEventListener("click", function () {
+      afficherPages("https://rickandmortyapi.com/api/character/?page=" + (x + 1));
+    });
+    Container = Container.nextElementSibling;
+    Container.addEventListener("click", function () {
+      afficherPages("https://rickandmortyapi.com/api/character/?page=" + (x + 2));
+    });
+    Container = Container.nextElementSibling;
+    Container.addEventListener("click", function () {
+      afficherPages("https://rickandmortyapi.com/api/character/?page=" + (x + 1));
+    });
+  } else if (next == null) {
+    Container.innerHTML = "<button class=\"previousPage\">Page pr\xE9c\xE9dante</button>\n        <button>".concat(x - 2, "</button>\n        <button>").concat(x - 1, "</button>\n        <button disabled>").concat(x, "</button>\n        <button disabled>").concat(x + 1, "</button>\n        <button disabled>").concat(x + 2, "</button>\n        <button disabled>Page suivante</button>\n        ");
+    Container = Container.firstElementChild;
+    Container.addEventListener("click", function () {
+      afficherPages("https://rickandmortyapi.com/api/character/?page=" + (x - 1));
+    });
+    Container = Container.nextElementSibling;
+    Container.addEventListener("click", function () {
+      afficherPages("https://rickandmortyapi.com/api/character/?page=" + (x - 2));
+    });
+    Container = Container.nextElementSibling;
+    Container.addEventListener("click", function () {
+      afficherPages("https://rickandmortyapi.com/api/character/?page=" + (x - 1));
+    });
+  } else {
+    Container.innerHTML = "\n        <button class=\"previousPage\">Page pr\xE9c\xE9dante</button>\n        <button>".concat(x - 2, "</button>\n        <button>").concat(x - 1, "</button>\n        <button disabled>").concat(x, "</button>\n        <button>").concat(x + 1, "</button>\n        <button>").concat(x + 2, "</button>\n        <button class=\"nextPage\">Page suivante</button>\n        ");
+    Container = Container.firstElementChild;
+    Container.addEventListener("click", function () {
+      afficherPages("https://rickandmortyapi.com/api/character/?page=" + (x - 1));
+    });
+    Container = Container.nextElementSibling;
+    Container.addEventListener("click", function () {
+      afficherPages("https://rickandmortyapi.com/api/character/?page=" + (x - 2));
+    });
+    Container = Container.nextElementSibling;
+    Container.addEventListener("click", function () {
+      afficherPages("https://rickandmortyapi.com/api/character/?page=" + (x - 1));
+    });
+    Container = Container.nextElementSibling.nextElementSibling;
+    Container.addEventListener("click", function () {
+      afficherPages("https://rickandmortyapi.com/api/character/?page=" + (x + 1));
+    });
+    Container = Container.nextElementSibling;
+    Container.addEventListener("click", function () {
+      afficherPages("https://rickandmortyapi.com/api/character/?page=" + (x + 2));
+    });
+    Container = Container.nextElementSibling;
+    Container.addEventListener("click", function () {
+      afficherPages("https://rickandmortyapi.com/api/character/?page=" + (x + 1));
+    });
+  }
+}
+
+function afficherPages(uri) {
+  console.log("afficherPages");
+  fetch(uri).then(function (responseAPI) {
+    return responseAPI.json();
+  }).then(function (listePersonnages) {
+    document.querySelector("body .results_C").innerHTML = "";
+    listePersonnages.results.forEach(function (element) {
+      affichagePersonnages(element);
+    });
+    showOrHide("h2");
+    affichageButtonNavPages(listePersonnages.info.prev, pageActuelle(listePersonnages.results[0].id, 20), listePersonnages.info.next, uri);
+  }).catch(function (error) {
+    console.error(error);
+  });
+}
+
+afficherPages("https://rickandmortyapi.com/api/character/?page=1");
+},{}],"../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -387,5 +441,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js"], null)
-//# sourceMappingURL=/personnages.js.map
+},{}]},{},["../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js","js/personnagesPages.js"], null)
+//# sourceMappingURL=/personnagesPages.861ab988.js.map
