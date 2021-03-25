@@ -1,0 +1,38 @@
+body{
+    h2{
+        background-color: #ededed;
+        cursor: pointer;
+    }
+    div{
+        display: none;
+        img{
+            height: 300px;
+        }
+        div{
+            display: block;
+            background-color: blue;
+            height: 300px;
+            ul{
+                overflow-y: auto;
+            }
+        }
+    }
+}
+
+.hide_C{
+    display: none;
+}
+
+.show_C{
+    display: flex;
+}
+
+.info_personnages_C{
+    padding: 0 11%;
+}
+
+.episodes{
+    background-color: red;
+    display: flex;
+    word-wrap: break-word
+}
