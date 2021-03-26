@@ -55,10 +55,25 @@ function showOrHide(elem){
 }
 
 
-function pageActuelle(firstElemList, nbElemPage){
-    console.log("pageActuelle()")
-    currentPage = (firstElemList-1) / nbElemPage + 1
-    console.log("page actuelle : " + currentPage)
+function pageActuelle(uri){
+    //console.log("pageActuelle()")
+    //currentPage = (firstElemList-1) / nbElemPage + 1
+    //console.log("page actuelle : " + currentPage)
+
+    uri2Part = uri.split("?")
+    //separation parametres entre eux
+    parametres = uri2Part[1].split("&")
+    //parametresEtCible contient spearé 
+    parametresEtCible = []
+    parametres.forEach(element => {
+        //separation parametres et value
+        tempo = element.split("=")
+        parametresEtCible.push(tempo[0])
+        parametresEtCible.push(tempo[1])
+    })
+    // identification de l'idex du parametre "page"
+    indexParamPage = parametresEtCible.findIndex(element => element == "page")
+    currentPage = parseInt(parametresEtCible[indexParamPage + 1])
     return currentPage
 }
 
@@ -79,13 +94,13 @@ function affichageButtonNavPages(prev, x, next, uri) {
         `
         Container = Container.firstElementChild.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling
         Container.addEventListener("click", function(){
-            afficherPages("https://rickandmortyapi.com/api/character/?page=" + (x+1))})
+            afficherPages(prevNextUri(uri, "next"))})
         Container = Container.nextElementSibling
         Container.addEventListener("click", function(){
-            afficherPages("https://rickandmortyapi.com/api/character/?page=" + (x+2))})
+            afficherPages(prevNextUri(uri, "next", 2))})
         Container = Container.nextElementSibling
         Container.addEventListener("click", function(){
-            afficherPages("https://rickandmortyapi.com/api/character/?page=" + (x+1))})
+            afficherPages(prevNextUri(uri, "next"))})
     } else if (next == null){
         Container.innerHTML = 
 
@@ -99,13 +114,13 @@ function affichageButtonNavPages(prev, x, next, uri) {
         `
         Container = Container.firstElementChild
         Container.addEventListener("click", function(){
-            afficherPages("https://rickandmortyapi.com/api/character/?page=" + (x-1))})
+            afficherPages(prevNextUri(uri, "prev"))})
         Container = Container.nextElementSibling
         Container.addEventListener("click", function(){
-            afficherPages("https://rickandmortyapi.com/api/character/?page=" + (x-2))})
+            afficherPages(prevNextUri(uri, "prev", 2))})
         Container = Container.nextElementSibling
         Container.addEventListener("click", function(){
-            afficherPages("https://rickandmortyapi.com/api/character/?page=" + (x-1))})
+            afficherPages(prevNextUri(uri, "prev"))})
     } else {
         Container.innerHTML = 
         `
@@ -119,28 +134,85 @@ function affichageButtonNavPages(prev, x, next, uri) {
         `
         Container = Container.firstElementChild
         Container.addEventListener("click", function(){
-            afficherPages("https://rickandmortyapi.com/api/character/?page=" + (x-1))})
+            afficherPages(prevNextUri(uri, "prev"))})
         Container = Container.nextElementSibling
         Container.addEventListener("click", function(){
-            afficherPages("https://rickandmortyapi.com/api/character/?page=" + (x-2))})
+            afficherPages(prevNextUri(uri, "prev", 2))})
         Container = Container.nextElementSibling
         Container.addEventListener("click", function(){
-            afficherPages("https://rickandmortyapi.com/api/character/?page=" + (x-1))})
+            afficherPages(prevNextUri(uri, "prev"))})
         Container = Container.nextElementSibling.nextElementSibling
         Container.addEventListener("click", function(){
-            afficherPages("https://rickandmortyapi.com/api/character/?page=" + (x+1))})
+            afficherPages(prevNextUri(uri, "next"))})
         Container = Container.nextElementSibling
         Container.addEventListener("click", function(){
-            afficherPages("https://rickandmortyapi.com/api/character/?page=" + (x+2))})
+            afficherPages(prevNextUri(uri, "next", 2))})
         Container = Container.nextElementSibling
         Container.addEventListener("click", function(){
-            afficherPages("https://rickandmortyapi.com/api/character/?page=" + (x+1))})
+            afficherPages(prevNextUri(uri, "next"))})
     }
 }
 
 
+function majValueSelecteur(categ){
+    console.log("majValueSelecteur()")
+    const selecteur_filtre = document.getElementById("selecteur_filtre_C")
+    if (categ ==''){
+        selecteur_filtre.parentNode.lastElementChild.innerHTML = 
+        `<option value=''>--------------Choisir une valeur--------------</option>`
+        document.getElementById("selecteur_value_C").setAttribute("disabled", false)
+    } else {
+        switch (categ){
+            case 'species':
+                document.getElementById("selecteur_value_C").removeAttribute("disabled")
+                selecteur_filtre.parentNode.lastElementChild.innerHTML = 
+                `
+                <option value=''>--------------Choisir une espèce--------------</option>
+                `
+                break;
+            case 'type':
+                document.getElementById("selecteur_value_C").removeAttribute("disabled")
+                selecteur_filtre.parentNode.lastElementChild.innerHTML = 
+                `
+                <option value=''>--------------Choisir un type--------------</option>
+                `
+                break;
+            case 'gender':
+                document.getElementById("selecteur_value_C").removeAttribute("disabled")
+                selecteur_filtre.parentNode.lastElementChild.innerHTML = 
+                `
+                <option value=''>--------------Choisir un genre--------------</option>
+                <option value='female'>Femelle</option>
+                <option value='male'>Mâle</option>
+                <option value='genderless'>Sans genre</option>
+                <option value='unknown'>Inconnu</option>
+                `
+                break;
+            case 'status':
+                document.getElementById("selecteur_value_C").removeAttribute("disabled")
+                selecteur_filtre.parentNode.lastElementChild.innerHTML = 
+                `
+                <option value=''>--------------Choisir un status--------------</option>
+                <option value='alive'>Vivant</option>
+                <option value='dead'>Mort</option>
+                <option value='unknown'>Inconnu</option>
+                `
+                break;
+            default:
+                break;
+        }
+    }
+    document.getElementById("selecteur_value_C").addEventListener("change", function(){
+        afficherPages("https://rickandmortyapi.com/api/character/?" 
+        + categ 
+        + "=" 
+        + document.getElementById("selecteur_value_C").value
+        + "&page=1")})
+}
+
+
 function afficherPages(uri){
-    console.log("afficherPages")
+    console.log("afficherPages()")
     fetch(uri)
     .then(function(responseAPI) {return responseAPI.json();})
     .then(function(listePersonnages) {
@@ -150,13 +222,52 @@ function afficherPages(uri){
         });
         showOrHide("h2")
         affichageButtonNavPages(listePersonnages.info.prev, 
-                                pageActuelle(listePersonnages.results[0].id, 20), 
+                                pageActuelle(uri),
                                 listePersonnages.info.next,
                                 uri)
+        document.getElementById("selecteur_filtre_C")
+        .addEventListener("change", function(){majValueSelecteur(selecteur_filtre_C.value)})
     })
     .catch(function(error) {
         console.error(error);
     })
+}
+
+function prevNextUri(uri, direction, jump){
+    console.log("prevNextUri()")
+    if (jump == null){jump = 1}
+    //separation uri et parametres
+    uri2Part = uri.split("?")
+    //separation parametres entre eux
+    parametres = uri2Part[1].split("&")
+    //parametresEtCible contient spearé 
+    parametresEtCible = []
+    parametres.forEach(element => {
+        //separation parametres et value
+        tempo = element.split("=")
+        parametresEtCible.push(tempo[0])
+        parametresEtCible.push(tempo[1])
+    })
+    // identification de l'idex du parametre "page"
+    indexParamPage = parametresEtCible.findIndex(element => element == "page")
+
+    if (direction == "next"){
+        parametresEtCible[indexParamPage + 1] = parseInt(parametresEtCible[indexParamPage + 1]) + jump
+    } else if (direction == "prev"){
+        parametresEtCible[indexParamPage + 1] = parseInt(parametresEtCible[indexParamPage + 1]) - jump
+    }
+    page = uri2Part[0] + "?"
+    for (let i = 0; i < parametresEtCible.length; i++){
+        page += parametresEtCible[i]
+        page += "="
+        page += parametresEtCible[i+1]
+        if (i + 2 != parametresEtCible.length){
+            page += "&"
+        }
+        i++
+    }
+    console.log("url retourné pour " + uri + " " + direction + " " + jump +  " : " + page)
+    return page
 }
 
 afficherPages("https://rickandmortyapi.com/api/character/?page=1")
