@@ -5,61 +5,108 @@
 body {
 	margin: 0;
 	padding: 0;
-	font-family:'Permanent Marker';
+	font-family:'Rock Salt';
 }
 
-header {
-	height: 500px;
-	width:100%;
-	background:black;
-	position: relative;
-
-}
-
-.header_fond {
-	width: 100%;
-	height: 100%;
-	position: absolute;
-	top: 0;left: 0;
-	background: url('../assets/acceuil_header.png') center no-repeat;
-	background-size: cover;
-	z-index: 1;
-	opacity: 0.9;
-}
-
-.container {
-	width: 90%;
-	margin: auto;
-	position: relative;
-	z-index: 99;
-}
-
-.header_navbar {
-	width: 100%;
-	height: 80px;
+.coupure_image {
 	display: flex;
-	flex-direction: row;
 	justify-content: space-between;
-	align-items: center;
 }
 
-.header_navbar-logo-title {
-	color: white;
-	font-size: 29px;
-}
-
-.header_navbar-menu-link {
-	margin-left: 30px;
+a {
 	text-decoration: none;
 	color: white;
-	font-size: 20px;
-  z-index: 15;
 }
 
-.header_navbar-menu-link:hover {
-  border: 3px solid violet;
-  background-color: black;
-  border-radius: 60%;
-  cursor: pointer;
-  padding: 12px;
+.left {
+	display: block;
+	width: 100%;
+	&_image {
+		position: relative;
+		width: 33.1%;
+	}
+	&_overlay {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background-color: rgba(0, 0, 0);
+		opacity: 0;
+		transition: opacity 0.25s;
+		font-family: 'Rock Salt';
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		&:hover {
+			opacity: 0.4;
+		}
+	}
+	&_description  {
+		font-size: 2em;
+		font-weight: bold;
+		color: white;
+	}
+}
+
+.center {
+	display: block;
+	width: 100%;
+	&_image {
+		position: relative;
+		width: 33.1%;
+	}
+	&_overlay {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background-color: rgba(0, 0, 0);
+		opacity: 0;
+		transition: opacity 0.25s;
+		color: white;
+		font-family: 'Rock Salt';
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		&:hover {
+			opacity: 0.4;
+		}
+	}
+	&_description  {
+		font-size: 2em;
+		font-weight: bold;
+	}
+}
+
+.right {
+	display: block;
+	width: 100%;
+	&_image {
+		position: relative;
+		width: 33.1%;
+	}
+	&_overlay {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background-color: rgba(0, 0, 0);
+		opacity: 0;
+		transition: opacity 0.25s;
+		color: white;
+		font-family: 'Rock Salt';
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		&:hover {
+			opacity: 0.4;
+		}
+	}
+	&_description  {
+		font-size: 2em;
+		font-weight: bold;
+	}
 }

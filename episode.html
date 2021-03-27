@@ -7,13 +7,18 @@
   <script src="https://kit.fontawesome.com/98e6e3d354.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="scss/episode.scss">
   <link href="https://fonts.googleapis.com/css2?family=Gochi+Hand&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Rock+Salt&display=swap" rel="stylesheet">
   <script src="js/script.js" defer></script>
   <title>Document</title>
 </head>
 
 <body>
   <header class="header">
-    <div class="header_fond"></div>
+    <div class="header_vid">
+      <video autoplay loop muted>
+        <source src="/assets/headerVid2.mov">
+      </video>
+    </div>
       <div class="container">
         <div class="header_navbar">
           <div class="header_navbar-logo">
@@ -25,7 +30,7 @@
             <a href="episode.html"class="header_navbar-menu-link"><i class="fas fa-tv"></i> Episodes </a>
             <a href=""class="header_navbar-menu-link"><i class="fas fa-user-friends"></i> Characters </a>
             <a href=""class="header_navbar-menu-link"><i class="fas fa-map-marker-alt"></i> Locations </a>
-            <a href="contact.html"class="header_navbar-menu-link"><i class="fa fa-phone"> Contact </a>
+            <a href="contact.html"class="header_navbar-menu-link"><i class="fa fa-phone"></i> Contact </a>
           </div>
 
           </div>
@@ -33,32 +38,19 @@
   </header>
 
   <main class="main">
-
-    <div class="imgFond"></div>
-
-      <div class="container2">
-
         <div class="saison1">
 
-            <div class="titreS1">
+            <div class="titre_S1_S2">
               <h2 id="titre1">SAISON 1</h2>
-            </div>
-
-            <ul class="listeEpS1"></ul>
-
-        </div>
-
-        <div class="saison2">
-
-            <div class="titreS2">
               <h2 id="titre2">SAISON 2</h2>
             </div>
 
-            <ul class="listeEpS2"></ul>
+            <div class="liste">
+              <ul class="listeEpS1"></ul>
+              <ul class="listeEpS2"></ul>
+            </div>
 
         </div>
-        
-      </div>
 
   </main>
 </body>

@@ -21,27 +21,55 @@ fetch("https://rickandmortyapi.com/api/episode")
         quelEpisodeS2(tabResults[i]);
   }
 
-  let titreUn = document.querySelector(".titreS1");
+  let titreUn = document.querySelector("#titre1");
+  console.log("Mon titreUn : ", titreUn);
+
+  let prochain = document.querySelector(".listeEpS1");
+  console.log("Mon prochain1 : ", prochain);
+
+  let fond2 = document.querySelector(".main");
 
   titreUn.addEventListener('click', function() {
-    let prochain = this.nextElementSibling;
+    fond2.classList.add("newPic1");
+    fond2.classList.remove("newPic2")
+
+    titreUn.style.backgroundColor = "#C4E538";
+    titreUn.style.color = "#0fb9b1";
+    titreDeux.style.backgroundColor = "";
+    titreDeux.style.color = "";
+
     if (prochain.style.display === "block"){
-      prochain.style.display = "none";
+      prochain.style.display = "block";
+      prochain2.style.display = "none";
     }
     else {
       prochain.style.display = "block";
+      prochain2.style.display = "none";
     }
   })
 
-  let titreDeux = document.querySelector(".titreS2");
+  let titreDeux = document.querySelector("#titre2");
+  console.log("Mon titreDeux : ", titreDeux);
+
+  let prochain2 = document.querySelector(".listeEpS2");
+  console.log("Mon prochain2 : ", prochain2);
 
   titreDeux.addEventListener('click', function() {
-    let prochain = this.nextElementSibling;
-    if (prochain.style.display === "block"){
+    fond2.classList.add("newPic2");
+    fond2.classList.remove("newPic1");
+
+    titreDeux.style.backgroundColor = "#C4E538";
+    titreDeux.style.color = "#0fb9b1";
+    titreUn.style.backgroundColor = "";
+    titreUn.style.color = "";
+
+    if (prochain2.style.display === "block"){
       prochain.style.display = "none";
+      prochain2.style.display = "block";
     }
     else {
-      prochain.style.display = "block";
+      prochain.style.display = "none";
+      prochain2.style.display = "block";
     }
   })
 })
