@@ -30,9 +30,15 @@ body {
       justify-content: space-between;
       align-items: center;
       &-logo-title {
-            color:#C4E538;
             font-size: 29px;
             font-weight: bold;
+            a {
+              text-decoration: none;
+              color: #0fb9b1;
+              &:hover {
+                color: #A3CB38;
+              }
+            }
           }
       &-menu-link {
           margin-left: 25px;
@@ -47,8 +53,7 @@ body {
           border-radius: 100%;
         }
         &-menu-link:hover {
-          background-color: white;
-          color: #A3CB38;
+          background-color: #0fb9b1;
           cursor: pointer;
         }
       }
@@ -124,22 +129,27 @@ body {
 }
 
 .listeEpS1 {
-  color: white;
+  color: white;;
   margin: 7px;
   padding: 0;
   li {
-    z-index: 99;
     width: 100%;
     font-family: 'Rock Salt';
-    font-size: 13px;
+    font-size: 14px;
     font-weight: bold;
     list-style: none;
     padding: 10px;
     letter-spacing: 4px;
+    a {
+      text-decoration: none;
+      color: white;
+    }
   }
   li:hover {
     background-color: #C4E538;
-    color: #0fb9b1;
+    a {
+      color: #0fb9b1;
+    }
   }
 }
 
@@ -151,14 +161,20 @@ body {
   li {
     width: 100%;
     font-family: 'Rock Salt';
-    font-size: 13px;
+    font-size: 14px;
     font-weight: bold;
     list-style: none;
     padding: 10px;
     letter-spacing: 4px;
+    a {
+      text-decoration: none;
+      color: white;
+    }
   }
   li:hover {
     background-color:#C4E538;
-    color: #0fb9b1;
+    a {
+      color: #0fb9b1;
+    }
   }
 }

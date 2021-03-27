@@ -78,9 +78,9 @@ fetch("https://rickandmortyapi.com/api/episode")
     const maListe1 = document.querySelector(".listeEpS1");
     maListe1.innerHTML += 
     `
-      <li>
+      <li><a href="">
        ${info.id} : ${info.name}
-      </li>
+      </a></li>
     `                                     
   }
 
@@ -88,8 +88,8 @@ fetch("https://rickandmortyapi.com/api/episode")
     const maListe2 = document.querySelector(".listeEpS2");
     maListe2.innerHTML += 
     `
-     <li>
+     <li><a href="">
       ${info.id} : ${info.name} 
-     </li>
+     </a></li>
     `   
   }
