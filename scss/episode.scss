@@ -84,7 +84,7 @@ body {
   background-image: url(/assets/saflingue2.png);
 }
 
-.saison1 {
+.saison1_2 {
   padding-top: 30px;
 }
 
@@ -132,7 +132,7 @@ body {
   color: white;;
   margin: 7px;
   padding: 0;
-  li {
+  #lEp {
     width: 100%;
     font-family: 'Rock Salt';
     font-size: 14px;
@@ -140,14 +140,9 @@ body {
     list-style: none;
     padding: 10px;
     letter-spacing: 4px;
-    a {
-      text-decoration: none;
-      color: white;
-    }
-  }
-  li:hover {
-    background-color: #C4E538;
-    a {
+    color: white;
+    &:hover {
+      background-color: #C4E538;
       color: #0fb9b1;
     }
   }
@@ -158,7 +153,7 @@ body {
   margin: 7px;
   padding: 0;
   display: none;
-  li {
+  #lEp {
     width: 100%;
     font-family: 'Rock Salt';
     font-size: 14px;
@@ -166,15 +161,22 @@ body {
     list-style: none;
     padding: 10px;
     letter-spacing: 4px;
-    a {
-      text-decoration: none;
-      color: white;
-    }
-  }
-  li:hover {
-    background-color:#C4E538;
-    a {
+    &:hover {
+      background-color:#C4E538;
       color: #0fb9b1;
+      }
     }
+}
+
+#souslEp {
+  display: none;
+}
+
+.sousListe {
+  margin-left: 10px;
+  p {
+  font-size: 12px;
+  letter-spacing: 4px;
+  padding: 0 5px 0 5px;
   }
 }

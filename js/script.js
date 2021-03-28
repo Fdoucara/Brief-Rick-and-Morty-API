@@ -12,14 +12,21 @@ fetch("https://rickandmortyapi.com/api/episode")
     let tabResults = dataEp.results;
 
     for (let i = 0; i < 11; i++) {
-      // console.log(`Liste perso dans un episode :`, tabResults[i].characters);
         quelEpisodeS1(tabResults[i]);
     }
 
     for (let i = 11; i < tabResults.length; i++) {
-      // console.log(`Liste perso dans un episode :`, tabResults[i].characters);
         quelEpisodeS2(tabResults[i]);
-  }
+    }
+
+    const sousListe = document.querySelectorAll("#souslEp");
+    console.log(sousListe)
+
+    for(i = 0; i < sousListe.length; i++) { 
+          let listeUriPerso = tabResults[i].characters;
+          listePerso(listeUriPerso, sousListe[i]);
+    }
+
 
   let titreUn = document.querySelector("#titre1");
   console.log("Mon titreUn : ", titreUn);
@@ -72,15 +79,40 @@ fetch("https://rickandmortyapi.com/api/episode")
       prochain2.style.display = "block";
     }
   })
+
+  const lEp = document.querySelectorAll("#lEp");
+  console.log("Voici :", lEp)
+
+  console.log("et bah :", sousListe);
+  for(let i = 0; i < sousListe.length; i++) { 
+    for(let i = 0; i < lEp.length; i++) { 
+      let cpt = 1;
+        lEp[i].addEventListener('click', function() {
+          cpt++;
+          console.log(cpt)
+          if (cpt % 2 == 0) {
+                sousListe[i].style.display = "flex"
+                sousListe[i].style.flexWrap = "wrap"
+          }else {
+                sousListe[i].style.display = "none"
+          }
+        })
+    }
+  }
+})
+
+.catch(function(error) {
+  console.error(error);
 })
 
   function quelEpisodeS1(info) {
     const maListe1 = document.querySelector(".listeEpS1");
     maListe1.innerHTML += 
     `
-      <li><a href="">
-       ${info.id} : ${info.name}
-      </a></li>
+      <li id="lEp">
+        ${info.id} : ${info.name}
+        <li id="souslEp"></li>
+      </li>
     `                                     
   }
 
@@ -88,8 +120,29 @@ fetch("https://rickandmortyapi.com/api/episode")
     const maListe2 = document.querySelector(".listeEpS2");
     maListe2.innerHTML += 
     `
-     <li><a href="">
-      ${info.id} : ${info.name} 
-     </a></li>
+     <li id="lEp">
+        ${info.id} : ${info.name}
+      <li id="souslEp"></li>
+     </li>
     `   
+  }
+
+  function listePerso(perso, ok) {
+    for(const uri of perso) {
+      fetch(uri)
+      .then(function(reponse){
+      return reponse.json()
+      })
+      .then(function(listePerso) {
+
+        ok.innerHTML += 
+        `
+        <div class="sousListe">
+          <p class="prenom">
+            ${listePerso.name},
+          </p>
+        </div>
+        `
+      })
+    }
   }
