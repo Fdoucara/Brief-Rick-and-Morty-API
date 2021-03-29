@@ -70,26 +70,38 @@ body {
   position: relative;
   width: 100%;
   height: 100%;
-  background-image: url(/assets/saflingue.png);
+  background-image: url(/assets/premier1.png);
   background-size: cover;
   background-repeat: no-repeat;
   background-position: right;
 }
 
 .newPic1 {
-  background-image: url(/assets/saflingue.png);
+  background-image: url(/assets/premier1.png);
+  transition: background-image 0.2s ease-in-out;
 }
 
 .newPic2 {
-  background-image: url(/assets/saflingue2.png);
+  background-image: url(/assets/premier2.png);
+  transition: background-image 0.2s ease-in-out;
+}
+
+.newPic3 {
+  background-image: url(/assets/premier3.png);
+  transition: background-image 0.2s ease-in-out;
+}
+
+.newPic4 {
+  background-image: url(/assets/premier4.png);
+  transition: background-image 0.2s ease-in-out;
 }
 
 .saison1_2 {
   padding-top: 30px;
 }
 
-.titre_S1_S2 {
-  width: 18%;
+.titre_S1_S2_S3_S4 {
+  width: 35%;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -123,9 +135,37 @@ body {
     }
 }
 
+#titre3 {
+  margin-left: 7px;
+  padding: 8px;
+  border: 1px solid;
+  border-radius: 15px;
+  font-family:'Rock Salt';
+  font-size: 16px;
+  color: white;
+  &:hover {
+    background-color:#C4E538;
+    color: #0fb9b1;
+    }
+}
+
+#titre4 {
+  margin-left: 7px;
+  padding: 8px;
+  border: 1px solid;
+  border-radius: 15px;
+  font-family:'Rock Salt';
+  font-size: 16px;
+  color: white;
+  &:hover {
+    background-color:#C4E538;
+    color: #0fb9b1;
+    }
+}
+
 .liste {
-  width: 45%;
-  height: 600px;
+  width: 60%;
+  height: 700px;
 }
 
 .listeEpS1 {
@@ -143,6 +183,7 @@ body {
     color: white;
     &:hover {
       background-color: #C4E538;
+      transition: background-color 0.1s;
       color: #0fb9b1;
     }
   }
@@ -163,20 +204,75 @@ body {
     letter-spacing: 4px;
     &:hover {
       background-color:#C4E538;
+      transition: background-color 0.1s;
       color: #0fb9b1;
       }
     }
 }
 
+.listeEpS3 {
+  color: white;;
+  margin: 7px;
+  padding: 0;
+  display: none;
+  #lEp {
+    width: 100%;
+    font-family: 'Rock Salt';
+    font-size: 14px;
+    font-weight: bold;
+    list-style: none;
+    padding: 10px;
+    letter-spacing: 4px;
+    color: white;
+    &:hover {
+      background-color: #C4E538;
+      transition: background-color 0.1s;
+      color: #0fb9b1;
+    }
+  }
+}
+
+.listeEpS4 {
+  color: white;;
+  margin: 7px;
+  padding: 0;
+  display: none;
+  #lEp {
+    width: 100%;
+    font-family: 'Rock Salt';
+    font-size: 14px;
+    font-weight: bold;
+    list-style: none;
+    padding: 10px;
+    letter-spacing: 4px;
+    color: white;
+    &:hover {
+      background-color: #C4E538;
+      transition: background-color 0.1s;
+      color: #0fb9b1;
+    }
+  }
+}
+
 #souslEp {
   display: none;
+  background-color: #C4E538;
+  color: #0fb9b1;
+  height: 100px;
+  overflow-y: scroll;
 }
 
 .sousListe {
   margin-left: 10px;
   p {
   font-size: 12px;
+  font-weight: bold;
   letter-spacing: 4px;
   padding: 0 5px 0 5px;
+  margin-top: 1px;
   }
+}
+
+.vert {
+  background-color: #C4E538;
 }
