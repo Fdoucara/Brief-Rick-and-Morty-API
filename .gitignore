@@ -1,5 +1,11 @@
 dist/
+<<<<<<< HEAD
 node_modules/
 ignore/
 .cache/
 
+=======
+.DS_Store/
+.cache/
+node_modules/
+>>>>>>> 1f5abd5c9e215644baf652f8edc5b22bcde83391
