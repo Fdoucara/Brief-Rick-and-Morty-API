@@ -1,0 +1,136 @@
+body{
+    margin: 0;
+    font-family: 'Rock Salt';
+    padding: 2% 10%;
+    header{
+        height: 350px;
+        div{
+            display: block;
+            width: 100%;
+            height: auto;
+            div{
+                height: 100%;
+                div{
+                    width: 100%;
+                    height: 100%;
+                    position: relative;
+                    div{
+                        width: 100%;
+                        position: relative;
+                        div{
+                            height: auto;
+                            width: 100%;
+
+                            h1{
+                                transform: translate(25%, 60%);
+                            }
+                            a{
+                                i{
+
+                                }
+
+                            }
+
+                        }
+                        .header_navbar_menu{
+                            position: absolute;
+                            right: 5%;
+                            bottom: 0;
+                            font-size: 20px;
+                            width: auto;
+                            a{
+                                color: white;
+                                font-family: 'Varela Round';
+                                i{
+                                    color: yellowgreen;
+                                }
+                            }
+                        }
+                    }
+                    .bottom_lign{
+                        height: 50px;
+                        position: absolute;
+                        bottom: 0;
+                        background-color: rgb(50, 74, 90);
+                    }
+                }   
+                
+            }
+        }
+        .header_fond{
+            background-image: url(../assets/personnages_header.png);
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: 50% 50%;
+            height: 350px;
+            width: 100%;
+        }
+        
+    }
+    div{
+        h2{
+            background-color: #ededed;
+            cursor: pointer;
+        }
+        div{
+            img{
+                height: 300px;
+            }
+            div{
+                height: 300px;
+                width: 300px;
+                display: block;
+                font-size: 10px;
+                ul{
+                    overflow-y: auto;
+                    border: solid 2px;
+                    height: 245.2px;
+                }
+            }
+            .info_perso_C{
+                font-size: 12px;
+                font-weight: 1000;
+                padding: 0 5%;
+                overflow-y: auto;
+            }
+            .episodes{
+                display: block;
+                word-wrap: break-word;
+                width: 500px;
+
+                
+            }
+        }
+        .info_personnages_C{
+            padding: 0 11%;
+        }
+    }
+    .page_nav_C{
+        div{}
+        .button_container{
+            display: inline-block;
+            margin: 0 auto;
+            button{
+                
+            }
+        }
+    }
+    .selecteurs{
+        height: 50px;
+    }
+}
+
+.hide_C{
+    display: none;
+}
+
+.show_C{
+    display: flex;
+}
+
+.results_C{
+    display: block;
+}
+
+
+
