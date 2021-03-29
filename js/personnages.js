@@ -19,6 +19,7 @@ function affichagePersonnages(personnages) {
         </div>
         <div class="episodes">
             <ul id="${personnages.id}">`
+            console.log(personnages.type)
     personnages.episode.forEach(element => {
         fetch(element)
         .then(function(responseAPI) {return responseAPI.json();})
@@ -62,7 +63,7 @@ fetch("https://rickandmortyapi.com/api/character")
   return responseAPI.json(); // Ici je retourne l'objet reponse formater en JSON
 })
 .then(function(reponseEnJson) {
-    for (let i=1; i < 21/*reponseEnJson.info.count + 1*/; i++){
+    for (let i=1; i < reponseEnJson.info.count + 1; i++){
         fetch("https://rickandmortyapi.com/api/character/" + i)
         .then(function(responseAPI) {return responseAPI.json();})
         .then(function(reponseEnJson) {affichagePersonnages(reponseEnJson);showOrHide("h2");addEvent();})

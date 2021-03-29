@@ -1,11 +1,11 @@
 function affichagePersonnages(personnages) {
-    console.log("affichagePersonnages()")
+    //console.log("affichagePersonnages()")
     const mainContainer = document.querySelector("body .results_C");
     mainContainer.innerHTML += 
     `<h2>${personnages.id} : ${personnages.name}</h2>
     <div class="info_personnages_C hide_C">
         <img src="${personnages.image}" alt="image de ${personnages.name}">
-        <div>
+        <div class="info_perso_C">
             <p>${personnages.name}</p>
             <p>${personnages.gender}</p>
             <p>${personnages.species}</p>
@@ -15,6 +15,7 @@ function affichagePersonnages(personnages) {
             <p>${personnages.location.name}</p>
         </div>
         <div class="episodes">
+            <h4>Episodes :</h4>
             <ul id="${personnages.id}">`
     personnages.episode.forEach(element => {
         fetch(element)
@@ -37,7 +38,7 @@ function affichagePersonnages(personnages) {
 
 
 function showOrHide(elem){
-    console.log("showOrHide()")
+    //console.log("showOrHide()")
     var cliquable = document.querySelectorAll(elem)
     cliquable.forEach(cliquable =>{
         cliquable.addEventListener("click", function(){
@@ -79,8 +80,8 @@ function pageActuelle(uri){
 
 
 function affichageButtonNavPages(prev, x, next, uri) {
-    console.log("affichageButtonNavPages()")
-    let Container = document.querySelector("body .page_nav_C");
+    //console.log("affichageButtonNavPages()")
+    let Container = document.querySelector("body .page_nav_C .button_container");
     if (prev == null) {
         Container.innerHTML = 
         `
@@ -155,12 +156,13 @@ function affichageButtonNavPages(prev, x, next, uri) {
 
 
 function majValueSelecteur(categ){
-    console.log("majValueSelecteur()")
+    //console.log("majValueSelecteur()")
     const selecteur_filtre = document.getElementById("selecteur_filtre_C")
     if (categ ==''){
         selecteur_filtre.parentNode.lastElementChild.innerHTML = 
         `<option value=''>--------------Choisir une valeur--------------</option>`
         document.getElementById("selecteur_value_C").setAttribute("disabled", false)
+        //return afficherPages("https://rickandmortyapi.com/api/character/?page=1")
     } else {
         switch (categ){
             case 'species':
@@ -168,13 +170,17 @@ function majValueSelecteur(categ){
                 selecteur_filtre.parentNode.lastElementChild.innerHTML = 
                 `
                 <option value=''>--------------Choisir une espèce--------------</option>
-                `
-                break;
-            case 'type':
-                document.getElementById("selecteur_value_C").removeAttribute("disabled")
-                selecteur_filtre.parentNode.lastElementChild.innerHTML = 
-                `
-                <option value=''>--------------Choisir un type--------------</option>
+                <option value='Human'>Humain</option>
+                <option value='Humanoid'>Humanoid</option>
+                <option value='Alien'>Alien</option>
+                <option value='Poopybutthole'>Poopybutthole</option>
+                <option value='Mythological Creature'>Créature mythologique</option>
+                <option value='Animal'>Animal</option>
+                <option value='Robot'>Robot</option>
+                <option value='Cronenberg'>Cronenberg</option>
+                <option value='Planet'>Planete</option>
+                <option value='Disease'>maladie</option>
+                <option value='unknown'>unknown</option>
                 `
                 break;
             case 'gender':
@@ -202,9 +208,10 @@ function majValueSelecteur(categ){
                 break;
         }
     }
+    categ2 = categ
     document.getElementById("selecteur_value_C").addEventListener("change", function(){
         afficherPages("https://rickandmortyapi.com/api/character/?" 
-        + categ 
+        + categ2
         + "=" 
         + document.getElementById("selecteur_value_C").value
         + "&page=1")})
@@ -212,7 +219,7 @@ function majValueSelecteur(categ){
 
 
 function afficherPages(uri){
-    console.log("afficherPages()")
+    //console.log("afficherPages()")
     fetch(uri)
     .then(function(responseAPI) {return responseAPI.json();})
     .then(function(listePersonnages) {
@@ -234,7 +241,7 @@ function afficherPages(uri){
 }
 
 function prevNextUri(uri, direction, jump){
-    console.log("prevNextUri()")
+    //console.log("prevNextUri()")
     if (jump == null){jump = 1}
     //separation uri et parametres
     uri2Part = uri.split("?")
@@ -266,8 +273,10 @@ function prevNextUri(uri, direction, jump){
         }
         i++
     }
-    console.log("url retourné pour " + uri + " " + direction + " " + jump +  " : " + page)
+    //console.log("url retourné pour " + uri + " " + direction + " " + jump +  " : " + page)
     return page
 }
 
+
+document.getElementById("selecteur_filtre_C").selectedIndex = 0;
 afficherPages("https://rickandmortyapi.com/api/character/?page=1")

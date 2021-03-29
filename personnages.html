@@ -6,34 +6,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://kit.fontawesome.com/98e6e3d354.js" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css2?family=Rock+Salt&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet"> 
     <link rel="stylesheet" href="scss/personnages.scss">
-    <title>Document</title>
+    <link rel="icon" href="https://rickandmortyapi.com/api/character/avatar/19.jpeg"/>
+    <title>Personnages</title>
 </head>
 <body>
-    <header class="header show_C">
-        <div class="header_fond"></div>
-          <div class="container">
-            <div class="header_navbar">
-              <div class="header_navbar-logo">
-                <h1 class="header_navbar-logo-title">Rick And Morty</h1>
-              </div>
-    
-              <div class="header_navbar_menu">
-                <a href="index.html"class="header_navbar-menu-link"><i class="fa fa-home"></i> Acceuil</a>
-                <!--<a href="episode.html"class="header_navbar-menu-link"><i class="fas fa-tv"></i> Episodes </a>-->
-                <a href=""class="header_navbar-menu-link"><i class="fas fa-user-friends"></i> Characters </a>
-                <a href=""class="header_navbar-menu-link"><i class="fas fa-map-marker-alt"></i> Locations </a>
-                <!--<a href="contact.html"class="header_navbar-menu-link"><i class="fa fa-phone"> Contact </a>-->
-              </div>
-    
-              </div>
+    <header>
+        <div class="header_fond">
+            <div class="container">
+                <div class="header_navbar">
+                    <div class="bottom_lign">
+                        <div class="header_navbar_menu">
+                            <a href="index.html"class="header_navbar-menu-link"><i class="fa fa-home"></i>Acceuil</a>
+                            <a href=""class="header_navbar-menu-link"><i class="fas fa-tv"></i>Episodes</a>
+                            <a href="personnages.html"class="header_navbar-menu-link"><i class="fas fa-user-friends"></i>Characters</a>
+                            <a href=""class="header_navbar-menu-link"><i class="fas fa-map-marker-alt"></i>Locations</a>
+                            <a href=""class="header_navbar-menu-link"><i class="fa fa-phone">Contact</a>
+                        </div>
+                    </div>
+                </div>
             </div>
-      </header>
-    <div style="background-color: red; height: 100px;" class="selecteurs show_C" id="selecteur">
+        </div>
+    </header>
+
+    <div class="selecteurs show_C" id="selecteur">
         <select id="selecteur_filtre_C" name='test'>
             <option value=''>--------------Choisir un filtre--------------</option>
             <option value='species'>Espèce</option>
-            <option value='type'>Type</option>
+            <!--<option value='type'>Type</option>-->
             <option value='gender'>Genre</option>
             <option value='status'>Status</option>
             <!--<option value='option-3'>Planète d'origine</option>
@@ -47,7 +49,7 @@
     </div>
     <div class="results_C show_C"></div>
     <div class="page_nav_C show_C">
-
+        <div class="button_container show_C"></div>
     </div>
     <script src="js/personnagesPages.js"></script>
 </body>
