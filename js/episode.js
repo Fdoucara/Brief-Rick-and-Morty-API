@@ -1,5 +1,3 @@
-const { updateLocale } = require("moment");
-
 let linksPage = [];
 
 for (let i = 1; i <= 41; i++) {
