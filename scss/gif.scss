@@ -7,14 +7,24 @@ body {
 }
 
 .cercle {
-  border: 1px solid;
+  width: 70px;
+  height: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid transparent;
   border-radius: 50%;
+  transform: translate(50%, 50%);
+  &:hover {
+    border: 1px solid black;
+    background-color: transparent;
+    a{
+      color: white;
+    }
+  }
   a {
     text-decoration: none;
     color: white;
-    &:hover {
-      color: white;
-    }
   }
 
 }
