@@ -8,7 +8,8 @@ header {
   width: 99.8%;
   height: 350px;
   background-size: cover;
-  background-image: url("/image23.25cd0156.png");
+  background-position: center;
+  background-image: url("/acceuil_header.70a26872.png");
   filter: contrast(115%);
   border: 5.5px #ff00cc solid;
   border-right: 7px #ff00cc solid;

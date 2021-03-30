@@ -22,7 +22,7 @@ console.log("Content of attribute info.count", dataInJson.info.count);
   function addLocation(location) {
   const mainContainerLocation = document.querySelector(".container-m");
   mainContainerLocation.innerHTML +=
-//affichage du "id", "name", "type" et "dimension" de l'API "location" dans ma div de gauche (class="container-m")
+//affichage du "id", "name", "type" et "dimension" de l'API "location" dans ma div (class="container-m")
 
   `<section>
   <div class="container-location-m">
@@ -44,7 +44,7 @@ console.log("Content of attribute info.count", dataInJson.info.count);
       const mainLink = document.getElementById(location.residents);
       mainLink.innerHTML +=
       `<li class="bloc-li-m"><i class="fas fa-star">${dataInJson.name}</i></li>`
-      //affichage "name" de tous les residents de toutes les planètes dans ma div de droite (class="container-li-m")
+      //affichage "name" de tous les residents de toutes les planètes dans ma div (class="container-li-m")
       //const containerLi = document.querySelector(".container-li-m");
       //containerLi.innerHTML += `<li class="show-m li-m">${dataInJson.name}</li>`
       //update: jai enlever ma deuxieme div, parce que je trouve que cela faisait pas trop jolie, j ai mis un scroll a la place

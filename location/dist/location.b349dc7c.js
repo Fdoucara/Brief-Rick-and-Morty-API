@@ -141,7 +141,7 @@ fetch("https://rickandmortyapi.com/api/location/").then(function (responseAPI) {
 
 function addLocation(location) {
   var mainContainerLocation = document.querySelector(".container-m");
-  mainContainerLocation.innerHTML += //affichage du "id", "name", "type" et "dimension" de l'API "location" dans ma div de gauche (class="container-m")
+  mainContainerLocation.innerHTML += //affichage du "id", "name", "type" et "dimension" de l'API "location" dans ma div (class="container-m")
   "<section>\n  <div class=\"container-location-m\">\n      <span>".concat(location.id, " / </span>\n      <span>").concat(location.name, " / </span>\n      <span>").concat(location.type, " / </span>\n      <span>").concat(location.dimension, "</span>\n  </div>\n      <div class=\"residents-m hide-m\">\n      <ul id=\"").concat(location.residents, "\">"); //conversion des string uri "residents" (api location) en "name" (api character)
   //pour cela appel à une boucle forEach (pour chaque élément) "residents" -> "name"
 
@@ -150,7 +150,7 @@ function addLocation(location) {
       return responseAPI.json();
     }).then(function (dataInJson) {
       var mainLink = document.getElementById(location.residents);
-      mainLink.innerHTML += "<li class=\"bloc-li-m\"><i class=\"fas fa-star\">".concat(dataInJson.name, "</i></li>"); //affichage "name" de tous les residents de toutes les planètes dans ma div de droite (class="container-li-m")
+      mainLink.innerHTML += "<li class=\"bloc-li-m\"><i class=\"fas fa-star\">".concat(dataInJson.name, "</i></li>"); //affichage "name" de tous les residents de toutes les planètes dans ma div (class="container-li-m")
       //const containerLi = document.querySelector(".container-li-m");
       //containerLi.innerHTML += `<li class="show-m li-m">${dataInJson.name}</li>`
       //update: jai enlever ma deuxieme div, parce que je trouve que cela faisait pas trop jolie, j ai mis un scroll a la place
@@ -234,7 +234,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50862" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58523" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
